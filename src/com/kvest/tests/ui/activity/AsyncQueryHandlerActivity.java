@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import com.kvest.tests.R;
-import com.kvest.tests.ui.TestAdapter;
+import com.kvest.tests.ui.adapter.TestAdapter;
 
 import java.util.ArrayList;
 

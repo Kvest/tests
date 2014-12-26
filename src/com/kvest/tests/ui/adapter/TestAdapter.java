@@ -1,4 +1,4 @@
-package com.kvest.tests.ui;
+package com.kvest.tests.ui.adapter;
 
 
 import android.content.Context;
