@@ -20,5 +20,12 @@ public class MainActivity extends Activity {
                 AsyncQueryHandlerActivity.startActivity(MainActivity.this);
             }
         });
+
+        findViewById(R.id.recycler_view_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleRecyclerViewActivity.startActivity(MainActivity.this);
+            }
+        });
     }
 }
