@@ -27,5 +27,11 @@ public class MainActivity extends Activity {
                 SimpleRecyclerViewActivity.startActivity(MainActivity.this);
             }
         });
+        findViewById(R.id.circle_pager_indicator_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CirclePagerIndicatorActivity.startActivity(MainActivity.this);
+            }
+        });
     }
 }

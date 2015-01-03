@@ -13,5 +13,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="RecyclerView simple test"/>
+    <Button
+        android:id="@+id/circle_pager_indicator_test"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="CirclePagerIndicator test"/>
 </LinearLayout>
 
