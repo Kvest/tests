@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.recycler_view_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleRecyclerViewActivity.startActivity(MainActivity.this);
+                TestRecyclerViewActivity.startActivity(MainActivity.this);
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.kvest.tests.ui.adapter;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,24 @@ public class SimpleRecyclerViewAdapter extends RecyclerView.Adapter<SimpleRecycl
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mTextView.setText(mDataset[position]);
+        switch (position % 5) {
+            case 0 :
+                holder.mTextView.setBackgroundColor(Color.GREEN);
+                break;
+            case 1 :
+                holder.mTextView.setBackgroundColor(Color.YELLOW);
+                break;
+            case 2 :
+                holder.mTextView.setBackgroundColor(Color.RED);
+                break;
+            case 3 :
+                holder.mTextView.setBackgroundColor(Color.GRAY);
+                break;
+            case 4 :
+                holder.mTextView.setBackgroundColor(Color.BLUE);
+                break;
+
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)

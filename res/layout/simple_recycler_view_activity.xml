@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recycler_view"
-    android:scrollbars="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dip"/>
+    android:orientation="vertical">
+    <RadioGroup
+        android:id="@+id/layout_manager_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/vertical_layout_manager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Vertical Layout Manager" />
+        <RadioButton
+            android:id="@+id/horizontal_layout_manager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Horizontal Layout Manager" />
+        <RadioButton
+            android:id="@+id/grid_layout_manager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Grid Layout Manager" />
+        <RadioButton
+            android:id="@+id/staggered_grid_layout_manager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StaggeredGrid Layout Manager" />
+        <RadioButton
+            android:id="@+id/custom_layout_manager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom Layout Manager" />
+    </RadioGroup>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:scrollbars="vertical|horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dip"/>
+</LinearLayout>

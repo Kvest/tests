@@ -12,6 +12,6 @@
         android:id="@+id/recycler_view_test"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="RecyclerView simple test"/>
+        android:text="RecyclerView test"/>
 </LinearLayout>
 
