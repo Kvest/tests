@@ -19,6 +19,8 @@
             android:name=".ui.activity.SimpleRecyclerViewActivity" />
         <activity
             android:name=".ui.activity.TestRecyclerViewActivity" />
+        <activity
+            android:name=".ui.activity.CirclePagerIndicatorActivity" />
         <provider
             android:name=".provider.TestProvider"
             android:authorities="com.kvest.tests"
