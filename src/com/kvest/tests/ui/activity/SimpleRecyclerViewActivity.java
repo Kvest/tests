@@ -14,6 +14,7 @@ import com.kvest.tests.R;
 
 import android.support.v7.widget.RecyclerView;
 import com.kvest.tests.ui.adapter.SimpleRecyclerViewAdapter;
+import com.kvest.tests.ui.widget.CustomLayoutManager;
 
 /**
  * User: roman
@@ -91,7 +92,8 @@ public class SimpleRecyclerViewActivity extends Activity implements RadioGroup.O
                 mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
                 break;
             case R.id.custom_layout_manager :
-                //TODO
+                RecyclerView.LayoutManager customLayoutManager = new CustomLayoutManager();
+                mRecyclerView.setLayoutManager(customLayoutManager);
                 break;
         }
     }
