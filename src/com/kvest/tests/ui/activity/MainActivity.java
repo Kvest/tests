@@ -33,5 +33,11 @@ public class MainActivity extends Activity {
                 CirclePagerIndicatorActivity.startActivity(MainActivity.this);
             }
         });
+        findViewById(R.id.vnc_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VNCActivity.startActivity(MainActivity.this);
+            }
+        });
     }
 }

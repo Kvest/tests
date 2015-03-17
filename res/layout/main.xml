@@ -18,5 +18,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="CirclePagerIndicator test"/>
+    <Button
+        android:id="@+id/vnc_test"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="VNC test"/>
 </LinearLayout>
 
