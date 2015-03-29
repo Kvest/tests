@@ -39,5 +39,11 @@ public class MainActivity extends Activity {
                 VNCActivity.startActivity(MainActivity.this);
             }
         });
+        findViewById(R.id.fragments_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentsTestActivity.startActivity(MainActivity.this);
+            }
+        });
     }
 }

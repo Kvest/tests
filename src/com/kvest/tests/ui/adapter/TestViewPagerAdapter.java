@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import com.kvest.tests.ui.fragment.ColorFragment;
+import com.kvest.tests.ui.fragment.ColorSupportFragment;
 
 /**
  * Created by Kvest on 03.01.2015.
@@ -19,7 +19,7 @@ public class TestViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        return ColorFragment.getInstance(FRAGMENTS_COLOR[i]);
+        return ColorSupportFragment.getInstance(FRAGMENTS_COLOR[i]);
     }
 
     @Override

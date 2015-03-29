@@ -23,5 +23,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="VNC test"/>
+    <Button
+        android:id="@+id/fragments_test"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragments test"/>
 </LinearLayout>
 

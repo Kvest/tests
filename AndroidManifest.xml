@@ -26,6 +26,11 @@
         <activity
             android:name=".ui.activity.CirclePagerIndicatorActivity" />
         <activity android:name=".ui.activity.VNCActivity" />
+        <activity
+            android:name=".ui.activity.FragmentsTestActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.StaticFragmentActivity" />
+        <activity android:name=".ui.activity.DynamicFragmentActivity" />
         <provider
             android:name=".provider.TestProvider"
             android:authorities="com.kvest.tests"
