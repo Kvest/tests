@@ -38,7 +38,7 @@ public class FragmentsTestActivity extends Activity {
         findViewById(R.id.viewpager_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                TestFragmentPagerAdapterActivity.startActivity(FragmentsTestActivity.this);
             }
         });
     }

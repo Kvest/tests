@@ -4,6 +4,8 @@
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="14"/>
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="ANDROID.PERMISSION.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -31,6 +33,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.StaticFragmentActivity" />
         <activity android:name=".ui.activity.DynamicFragmentActivity" />
+        <activity android:name=".ui.activity.TestFragmentPagerAdapterActivity" />
         <provider
             android:name=".provider.TestProvider"
             android:authorities="com.kvest.tests"
