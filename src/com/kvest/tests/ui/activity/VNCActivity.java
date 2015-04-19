@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -66,7 +68,7 @@ public class VNCActivity extends Activity {
 //        localProperties.androidId = ((Long)G.androidId.get()).longValue();
 
         String id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-        sb.append("id=").append(id).append("==").append(Long.parseLong(id, 16)).append("\n");
+        sb.append("id=").append(id).append("==").append("\n");
 
         WifiManager manager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = manager.getConnectionInfo();
@@ -118,6 +120,10 @@ public class VNCActivity extends Activity {
         } else {
             sb.append("phoneNumber is empty\n");
         };
+
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        sb.append("location=").append(location == null ? "null" : location.toString()).append("\n");
 
         ArrayList<InetAddress> localArrayList = getNonLoopbackInetAddresses();
         sb.append("ipAddr=");
