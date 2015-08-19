@@ -16,6 +16,8 @@ import android.support.v7.widget.RecyclerView;
 import com.kvest.tests.ui.adapter.SimpleRecyclerViewAdapter;
 import com.kvest.tests.ui.widget.CustomLayoutManager;
 
+import java.util.Random;
+
 /**
  * User: roman
  * Date: 12/26/14
@@ -59,8 +61,9 @@ public class SimpleRecyclerViewActivity extends Activity implements RadioGroup.O
 
         //create dataset
         String[] dataset = new String[DATASET_SIZE];
+        Random r = new Random();
         for (int i = 0; i < DATASET_SIZE; ++i) {
-            dataset[i] = "Test " + i;
+            dataset[i] = "Test " + (i + r.nextInt(100));
         }
 
         // specify an adapter (see also next example)
@@ -83,11 +86,11 @@ public class SimpleRecyclerViewActivity extends Activity implements RadioGroup.O
                 mRecyclerView.setLayoutManager(horizontallLayoutManager);
                 break;
             case R.id.grid_layout_manager :
-                RecyclerView.LayoutManager gridLayoutManager = new GridLayoutManager(this, 3 , GridLayoutManager.VERTICAL, false);
+                RecyclerView.LayoutManager gridLayoutManager = new GridLayoutManager(this, 4 , GridLayoutManager.VERTICAL, false);
                 mRecyclerView.setLayoutManager(gridLayoutManager);
                 break;
             case R.id.staggered_grid_layout_manager :
-                StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.HORIZONTAL);
+                StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL);
                 staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
                 mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
                 break;
