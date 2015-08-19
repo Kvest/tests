@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.kvest.tests"
+          android:versionCode="1"
+          android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="14"/>
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="ANDROID.PERMISSION.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.MainActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.AsyncQueryHandlerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SimpleRecyclerViewActivity" />
+        <activity
+            android:name=".ui.activity.TestRecyclerViewActivity" />
+        <activity
+            android:name=".ui.activity.CirclePagerIndicatorActivity" />
+        <activity android:name=".ui.activity.VNCActivity" />
+        <activity
+            android:name=".ui.activity.FragmentsTestActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.StaticFragmentActivity" />
+        <activity android:name=".ui.activity.DynamicFragmentActivity" />
+        <activity android:name=".ui.activity.TestFragmentPagerAdapterActivity" />
+        <provider
+            android:name=".provider.TestProvider"
+            android:authorities="com.kvest.tests"
+            android:exported="false" />
+    </application>
+</manifest>
