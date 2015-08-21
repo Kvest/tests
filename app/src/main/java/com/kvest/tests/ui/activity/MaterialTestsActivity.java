@@ -36,6 +36,12 @@ public class MaterialTestsActivity extends AppCompatActivity {
                 TabLayoutTestActivity.start(MaterialTestsActivity.this);
             }
         });
+        findViewById(R.id.fab_and_snackbar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FabAndSnackbarActivity.start(MaterialTestsActivity.this);
+            }
+        });
 
         findViewById(R.id.edit_text_email).setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

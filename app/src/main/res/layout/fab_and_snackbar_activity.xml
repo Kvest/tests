@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <RadioGroup
+        android:id="@+id/fab_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dip"
+            android:text="FAB action:"/>
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/action_show_snackbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:padding="4dip"
+            android:text="Show Snackbar"/>
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/action_show_subitems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dip"
+            android:text="Show subitems"/>
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/action_transform"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dip"
+            android:text="Transform"/>
+    </RadioGroup>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_input_add"
+        android:layout_gravity="bottom|right"
+        app:fabSize="normal"
+        android:layout_margin="8dip"/>
+</android.support.design.widget.CoordinatorLayout>
