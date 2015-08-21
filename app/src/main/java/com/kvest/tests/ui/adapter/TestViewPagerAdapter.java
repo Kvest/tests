@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
 import com.kvest.tests.ui.fragment.ColorSupportFragment;
 
 /**
@@ -26,4 +27,11 @@ public class TestViewPagerAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return FRAGMENTS_COUNT;
     }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return "Item " + position;
+    }
+
+
 }

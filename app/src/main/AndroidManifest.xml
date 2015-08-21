@@ -35,6 +35,8 @@
         <activity android:name=".ui.activity.StaticFragmentActivity" />
         <activity android:name=".ui.activity.DynamicFragmentActivity" />
         <activity android:name=".ui.activity.TestFragmentPagerAdapterActivity" />
+        <activity android:name=".ui.activity.MaterialTestsActivity"/>
+        <activity android:name=".ui.activity.TabLayoutTestActivity"/>
         <provider
             android:name=".provider.TestProvider"
             android:authorities="com.kvest.tests"

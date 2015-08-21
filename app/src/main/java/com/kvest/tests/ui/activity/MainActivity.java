@@ -45,5 +45,11 @@ public class MainActivity extends Activity {
                 FragmentsTestActivity.startActivity(MainActivity.this);
             }
         });
+        findViewById(R.id.material_tests).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MaterialTestsActivity.start(MainActivity.this);
+            }
+        });
     }
 }

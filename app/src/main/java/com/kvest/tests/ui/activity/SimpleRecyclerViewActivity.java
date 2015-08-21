@@ -34,6 +34,7 @@ public class SimpleRecyclerViewActivity extends Activity implements RadioGroup.O
     }
 
     //TODO
+    //2) Разные типы контента(заголовок и плитка внизу) + попробовать через span
     // 3) Кастомный LayoutManager
     // 4) Анимации
     // 5) Разные адаптеры
