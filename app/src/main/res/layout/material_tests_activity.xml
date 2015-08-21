@@ -67,7 +67,6 @@
                 android:text="AppCompatRadioButton"/>
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,6 +85,19 @@
                 android:padding="4dip"
                 android:text="SwitchCompat"/>
         </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/edit_text_email_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/edit_text_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Email" />
+        </android.support.design.widget.TextInputLayout>
+
         <Button
             android:id="@+id/tab_layout_test"
             android:layout_width="match_parent"
