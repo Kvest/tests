@@ -41,10 +41,17 @@ public class MaterialTestsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FabAndSnackbarActivity.start(MaterialTestsActivity.this);
             }
-        });findViewById(R.id.app_bar_layout_test).setOnClickListener(new View.OnClickListener() {
+        });
+        findViewById(R.id.app_bar_layout_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppBarLayoutTestActivity.start(MaterialTestsActivity.this);
+            }
+        });
+        findViewById(R.id.collapsing_tool_layout_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CollapsingToolLayoutTestActivity.start(MaterialTestsActivity.this);
             }
         });
 

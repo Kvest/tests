@@ -121,5 +121,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="AppBarLayout test"/>
+        <Button
+            android:id="@+id/collapsing_tool_layout_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CollapsingToolbarLayout test"/>
     </LinearLayout>
 </ScrollView>
