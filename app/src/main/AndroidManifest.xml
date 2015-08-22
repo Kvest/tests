@@ -38,6 +38,7 @@
         <activity android:name=".ui.activity.MaterialTestsActivity"/>
         <activity android:name=".ui.activity.TabLayoutTestActivity"/>
         <activity android:name=".ui.activity.FabAndSnackbarActivity"/>
+        <activity android:name=".ui.activity.AppBarLayoutTestActivity"/>
         <provider
             android:name=".provider.TestProvider"
             android:authorities="com.kvest.tests"

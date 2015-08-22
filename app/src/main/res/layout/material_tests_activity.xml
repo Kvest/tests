@@ -116,5 +116,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="FAB &amp; Snackbar test"/>
+        <Button
+            android:id="@+id/app_bar_layout_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AppBarLayout test"/>
     </LinearLayout>
 </ScrollView>
