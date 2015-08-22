@@ -40,6 +40,7 @@
         <activity android:name=".ui.activity.FabAndSnackbarActivity"/>
         <activity android:name=".ui.activity.AppBarLayoutTestActivity"/>
         <activity android:name=".ui.activity.CollapsingToolLayoutTestActivity"/>
+        <activity android:name=".ui.activity.CollapsingToolLayoutTestActivityWithFragment"/>
         <provider
             android:name=".provider.TestProvider"
             android:authorities="com.kvest.tests"

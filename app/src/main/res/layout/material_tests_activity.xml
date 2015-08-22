@@ -126,5 +126,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CollapsingToolbarLayout test"/>
+        <Button
+            android:id="@+id/collapsing_tool_layout_test_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CollapsingToolbarLayout from fragment"/>
     </LinearLayout>
 </ScrollView>

@@ -51,7 +51,13 @@ public class MaterialTestsActivity extends AppCompatActivity {
         findViewById(R.id.collapsing_tool_layout_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CollapsingToolLayoutTestActivity.start(MaterialTestsActivity.this);
+               CollapsingToolLayoutTestActivity.start(MaterialTestsActivity.this);
+            }
+        });
+        findViewById(R.id.collapsing_tool_layout_test_fragment).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CollapsingToolLayoutTestActivityWithFragment.start(MaterialTestsActivity.this);
             }
         });
 
