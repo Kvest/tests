@@ -1,135 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    <LinearLayout
-        android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize"
-            android:background="@color/primary"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Components:"/>
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-            <EditText
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dip"
-                android:hint="EditText"/>
-            <android.support.v7.widget.AppCompatEditText
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dip"
-                android:hint="AppCompatEditText"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-            <CheckBox
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dip"
-                android:text="CheckBox"/>
-            <android.support.v7.widget.AppCompatCheckBox
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dip"
-                android:text="AppCompatCheckBox"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-            <RadioButton
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dip"
-                android:text="RadioButton"/>
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dip"
-                android:text="AppCompatRadioButton"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-            <Switch
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dip"
-                android:text="Switch"/>
-            <android.support.v7.widget.SwitchCompat
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dip"
-                android:text="SwitchCompat"/>
-        </LinearLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/edit_text_email_wrapper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/edit_text_email"
+            android:layout_height="match_parent">
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="Email" />
-        </android.support.design.widget.TextInputLayout>
+                android:text="Components:"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <EditText
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dip"
+                    android:hint="EditText"/>
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dip"
+                    android:hint="AppCompatEditText"/>
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/tab_layout_test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TabLayout test"/>
-        <Button
-            android:id="@+id/fab_and_snackbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="FAB &amp; Snackbar test"/>
-        <Button
-            android:id="@+id/app_bar_layout_test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="AppBarLayout test"/>
-        <Button
-            android:id="@+id/collapsing_tool_layout_test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CollapsingToolbarLayout test"/>
-        <Button
-            android:id="@+id/collapsing_tool_layout_test_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CollapsingToolbarLayout from fragment"/>
-    </LinearLayout>
-</ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <CheckBox
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dip"
+                    android:text="CheckBox"/>
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dip"
+                    android:text="AppCompatCheckBox"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <RadioButton
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dip"
+                    android:text="RadioButton"/>
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dip"
+                    android:text="AppCompatRadioButton"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <Switch
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dip"
+                    android:text="Switch"/>
+                <android.support.v7.widget.SwitchCompat
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dip"
+                    android:text="SwitchCompat"/>
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edit_text_email_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edit_text_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:hint="Email" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="8dip"
+                card_view:cardBackgroundColor="@color/accent"
+                card_view:cardCornerRadius="8dp">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/cardview_toolbar"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="top"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+                <TextView
+                    android:id="@+id/info_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Cardview with a text"/>
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/tab_layout_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TabLayout test"/>
+            <Button
+                android:id="@+id/fab_and_snackbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FAB &amp; Snackbar test"/>
+            <Button
+                android:id="@+id/app_bar_layout_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="AppBarLayout test"/>
+            <Button
+                android:id="@+id/collapsing_tool_layout_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CollapsingToolbarLayout test"/>
+            <Button
+                android:id="@+id/collapsing_tool_layout_test_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CollapsingToolbarLayout from fragment"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

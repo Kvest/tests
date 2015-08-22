@@ -8,8 +8,10 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.kvest.tests.R;
 
@@ -74,6 +76,18 @@ public class MaterialTestsActivity extends AppCompatActivity {
                         textInputLayout.setErrorEnabled(false);
                     }
                 }
+            }
+        });
+
+        //cardview toolbar
+        Toolbar cardviewToolbar = (Toolbar) findViewById(R.id.cardview_toolbar);
+        cardviewToolbar.setTitle("CardView title");
+        cardviewToolbar.inflateMenu(R.menu.cardview_menu);
+        cardviewToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(MaterialTestsActivity.this, "CardView toolbar action", Toast.LENGTH_SHORT).show();
+                return true;
             }
         });
     }

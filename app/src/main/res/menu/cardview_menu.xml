@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/item_test"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="Test"
+        app:showAsAction="collapseActionView"/>
+    <item android:id="@+id/item_test1"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Test 1"
+        app:showAsAction="collapseActionView"/>
+    <item android:id="@+id/item_test2"
+        android:icon="@android:drawable/ic_menu_call"
+        android:title="Test 2"
+        app:showAsAction="collapseActionView"/>
+</menu>
