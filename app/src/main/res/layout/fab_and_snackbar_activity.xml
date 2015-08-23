@@ -35,6 +35,20 @@
             android:padding="4dip"
             android:text="Transform"/>
     </RadioGroup>
+    <FrameLayout
+        android:id="@+id/actions_panel"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_height="80dip"
+        android:background="#ff0000">
+        <ImageButton
+            android:id="@+id/close_panel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:layout_gravity="center_vertical|right"/>
+    </FrameLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
