@@ -33,5 +33,19 @@ public class TestRecyclerViewActivity extends Activity {
                 SimpleRecyclerViewActivity.startActivity(TestRecyclerViewActivity.this);
             }
         });
+
+        findViewById(R.id.actions_recycler_view_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActionsRecyclerViewActivity.startActivity(TestRecyclerViewActivity.this);
+            }
+        });
+
+        findViewById(R.id.grid_recycler_view_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GridRecyclerViewActivity.startActivity(TestRecyclerViewActivity.this);
+            }
+        });
     }
 }
