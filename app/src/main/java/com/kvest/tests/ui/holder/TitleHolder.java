@@ -4,16 +4,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.kvest.tests.model.BaseRecyclerViewModel;
-import com.kvest.tests.model.ItemModel;
 import com.kvest.tests.model.TitleModel;
-import com.kvest.tests.ui.adapter.ActionsRecyclerViewAdapter;
-
-import org.w3c.dom.Text;
+import com.kvest.tests.ui.adapter.UniversalRecyclerViewAdapter;
 
 /**
  * Created by roman on 9/1/15.
  */
-public class TitleHolder extends ActionsRecyclerViewAdapter.ViewHolder {
+public class TitleHolder extends UniversalRecyclerViewAdapter.ViewHolder {
     private TextView title;
 
     public TitleHolder(View view) {

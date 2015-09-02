@@ -7,13 +7,13 @@ import android.widget.TextView;
 import com.kvest.tests.R;
 import com.kvest.tests.model.BaseRecyclerViewModel;
 import com.kvest.tests.model.ItemModel;
-import com.kvest.tests.ui.adapter.ActionsRecyclerViewAdapter;
+import com.kvest.tests.ui.adapter.UniversalRecyclerViewAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by roman on 9/1/15.
  */
-public class ItemHolder extends ActionsRecyclerViewAdapter.ViewHolder {
+public class ItemHolder extends UniversalRecyclerViewAdapter.ViewHolder {
     private TextView title;
     private ImageView image;
 

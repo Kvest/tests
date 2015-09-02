@@ -4,25 +4,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.kvest.tests.R;
 import com.kvest.tests.model.BaseRecyclerViewModel;
+import com.kvest.tests.ui.holder.ImageItemHolder;
 import com.kvest.tests.ui.holder.ItemHolder;
 import com.kvest.tests.ui.holder.TitleHolder;
 
 /**
  * Created by roman on 9/1/15.
  */
-public class ActionsRecyclerViewAdapter extends RecyclerView.Adapter<ActionsRecyclerViewAdapter.ViewHolder> {
+public class UniversalRecyclerViewAdapter extends RecyclerView.Adapter<UniversalRecyclerViewAdapter.ViewHolder> {
     private BaseRecyclerViewModel[] dataset;
 
-    public ActionsRecyclerViewAdapter(BaseRecyclerViewModel[] dataset) {
+    public UniversalRecyclerViewAdapter(BaseRecyclerViewModel[] dataset) {
         this.dataset = dataset;
     }
 
     @Override
-    public ActionsRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public UniversalRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
 
@@ -31,6 +31,8 @@ public class ActionsRecyclerViewAdapter extends RecyclerView.Adapter<ActionsRecy
                 return new TitleHolder(v);
             case R.layout.item_view :
                 return new ItemHolder(v);
+            case R.layout.image_item_view :
+                return new ImageItemHolder(v);
         }
 
         return null;
@@ -38,7 +40,7 @@ public class ActionsRecyclerViewAdapter extends RecyclerView.Adapter<ActionsRecy
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ActionsRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(UniversalRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.onBindView(dataset[position]);
     }
 

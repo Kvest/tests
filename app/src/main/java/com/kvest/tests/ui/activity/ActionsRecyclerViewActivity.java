@@ -11,7 +11,7 @@ import com.kvest.tests.R;
 import com.kvest.tests.model.BaseRecyclerViewModel;
 import com.kvest.tests.model.ItemModel;
 import com.kvest.tests.model.TitleModel;
-import com.kvest.tests.ui.adapter.ActionsRecyclerViewAdapter;
+import com.kvest.tests.ui.adapter.UniversalRecyclerViewAdapter;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -58,7 +58,7 @@ public class ActionsRecyclerViewActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.actions_recycler_view_activity);
+        setContentView(R.layout.recycler_view_activity);
 
        init();
     }
@@ -85,7 +85,7 @@ public class ActionsRecyclerViewActivity extends Activity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         //specify an adapter
-        recyclerView.setAdapter(new ActionsRecyclerViewAdapter(generateDataset()));
+        recyclerView.setAdapter(new UniversalRecyclerViewAdapter(generateDataset()));
     }
 
     private BaseRecyclerViewModel[] generateDataset() {
