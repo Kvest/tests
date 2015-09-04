@@ -11,14 +11,19 @@ import com.kvest.tests.ui.holder.ImageItemHolder;
 import com.kvest.tests.ui.holder.ItemHolder;
 import com.kvest.tests.ui.holder.TitleHolder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by roman on 9/1/15.
  */
 public class UniversalRecyclerViewAdapter extends RecyclerView.Adapter<UniversalRecyclerViewAdapter.ViewHolder> {
-    private BaseRecyclerViewModel[] dataset;
+    private List<BaseRecyclerViewModel> dataset;
 
     public UniversalRecyclerViewAdapter(BaseRecyclerViewModel[] dataset) {
-        this.dataset = dataset;
+        this.dataset = new ArrayList<>(Arrays.asList(dataset));
     }
 
     @Override
@@ -41,17 +46,22 @@ public class UniversalRecyclerViewAdapter extends RecyclerView.Adapter<Universal
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(UniversalRecyclerViewAdapter.ViewHolder holder, int position) {
-        holder.onBindView(dataset[position]);
+        holder.onBindView(dataset.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return dataset.length;
+        return dataset.size();
+    }
+
+    public void add(int index, BaseRecyclerViewModel item) {
+        dataset.add(index, item);
+        notifyItemInserted(index);
     }
 
     @Override
     public int getItemViewType(int position) {
-        return dataset[position].layout;
+        return dataset.get(position).layout;
     }
 
     public static abstract class ViewHolder extends RecyclerView.ViewHolder {

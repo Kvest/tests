@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -16,6 +17,9 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+
+import jp.wasabeef.recyclerview.animators.FadeInAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 /**
  * Created by roman on 9/1/15.
@@ -53,6 +57,7 @@ public class GridRecyclerViewActivity extends Activity {
             "http://rdiodynimages3-a.akamaihd.net/?l=a5743329-1",
     };
 
+    private UniversalRecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
     private int[] spanSizes;
 
@@ -93,8 +98,11 @@ public class GridRecyclerViewActivity extends Activity {
         });
         recyclerView.setLayoutManager(layoutManager);
 
-        //specify an adapter
-        recyclerView.setAdapter(new UniversalRecyclerViewAdapter(generateDataset()));
+        recyclerView.setItemAnimator(new FadeInAnimator());
+
+        //set an adapter
+        adapter = new UniversalRecyclerViewAdapter(generateDataset());
+        recyclerView.setAdapter(adapter);
     }
 
     private BaseRecyclerViewModel[] generateDataset() {
