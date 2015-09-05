@@ -80,7 +80,6 @@ public class FabAndSnackbarActivity extends AppCompatActivity {
     }
 
     private void showSubitems() {
-        //TODO add subitems with a fog
         if (fab.getRotation() > 0) {
             fab.animate()
                 .rotation(0f)

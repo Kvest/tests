@@ -54,6 +54,25 @@ public class UniversalRecyclerViewAdapter extends RecyclerView.Adapter<Universal
         return dataset.size();
     }
 
+    public void onItemDismiss(int position) {
+        dataset.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(dataset, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(dataset, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
+    }
+
     public void add(int index, BaseRecyclerViewModel item) {
         dataset.add(index, item);
         notifyItemInserted(index);

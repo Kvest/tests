@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -18,8 +17,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
-import jp.wasabeef.recyclerview.animators.FadeInAnimator;
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 /**
  * Created by roman on 9/1/15.
@@ -85,10 +83,6 @@ public class GridRecyclerViewActivity extends Activity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
-
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -98,7 +92,7 @@ public class GridRecyclerViewActivity extends Activity {
         });
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setItemAnimator(new FadeInAnimator());
+        recyclerView.setItemAnimator(new SlideInUpAnimator());
 
         //set an adapter
         adapter = new UniversalRecyclerViewAdapter(generateDataset());
