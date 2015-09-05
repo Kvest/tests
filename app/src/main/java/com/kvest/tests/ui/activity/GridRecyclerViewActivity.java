@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.kvest.tests.R;
 import com.kvest.tests.model.BaseRecyclerViewModel;
@@ -57,7 +58,6 @@ public class GridRecyclerViewActivity extends Activity {
 
     private UniversalRecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
-    private int[] spanSizes;
 
 
     @Override
@@ -83,41 +83,51 @@ public class GridRecyclerViewActivity extends Activity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+        adapter = new UniversalRecyclerViewAdapter(generateDataset());
+
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
-        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                return spanSizes[position];
-            }
-        });
+        layoutManager.setSpanSizeLookup(adapter.getSpanSizeLookup());
         recyclerView.setLayoutManager(layoutManager);
 
         recyclerView.setItemAnimator(new SlideInUpAnimator());
 
         //set an adapter
-        adapter = new UniversalRecyclerViewAdapter(generateDataset());
         recyclerView.setAdapter(adapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT,
+                                                   ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                        final int fromPos = viewHolder.getAdapterPosition();
+                        final int toPos = target.getAdapterPosition();
+
+                        return adapter.onItemMove(fromPos, toPos);
+                    }
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        adapter.onItemDismiss(viewHolder.getAdapterPosition());
+                    }
+                });
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     private BaseRecyclerViewModel[] generateDataset() {
         BaseRecyclerViewModel[] result = new BaseRecyclerViewModel[NEW_ITEM_IMAGE_URLS.length + ITEM_IMAGE_URLS.length + 2];
-        spanSizes = new int[result.length];
         int index = 0;
         result[index++] = new TitleModel("First images list:");
-        spanSizes[index - 1] = 3;
+        result[index - 1].setSpanSize(3);
         for (String url : NEW_ITEM_IMAGE_URLS) {
             result[index++] = new ImageItemModel(url);
             if (index >= 3 && index <= 5) {
-                spanSizes[index - 1] = 2;
+                result[index - 1].setSpanSize(2);
             } else {
-                spanSizes[index - 1] = 1;
+                result[index - 1].setSpanSize(1);
             }
         }
         result[index++] = new TitleModel("Second images list:");
-        spanSizes[index - 1] = 3;
+        result[index - 1].setSpanSize(3);
         for (String url : ITEM_IMAGE_URLS) {
             result[index++] = new ImageItemModel(url);
-            spanSizes[index - 1] = 1;
+            result[index - 1].setSpanSize(1);
         }
 
         return result;

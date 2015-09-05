@@ -1,5 +1,6 @@
 package com.kvest.tests.ui.adapter;
 
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 public class UniversalRecyclerViewAdapter extends RecyclerView.Adapter<UniversalRecyclerViewAdapter.ViewHolder> {
     private List<BaseRecyclerViewModel> dataset;
+    private GridLayoutManager.SpanSizeLookup spanSizeLookup;
 
     public UniversalRecyclerViewAdapter(BaseRecyclerViewModel[] dataset) {
         this.dataset = new ArrayList<>(Arrays.asList(dataset));
@@ -89,5 +91,21 @@ public class UniversalRecyclerViewAdapter extends RecyclerView.Adapter<Universal
         }
 
         public abstract void onBindView(BaseRecyclerViewModel model);
+    }
+
+    //not a good idea to do it this way. This is just for the purposes of learning
+
+    public GridLayoutManager.SpanSizeLookup getSpanSizeLookup() {
+        if (spanSizeLookup == null) {
+            spanSizeLookup = new SpanSizeLookup();
+        }
+        return spanSizeLookup;
+    }
+
+    private class SpanSizeLookup extends GridLayoutManager.SpanSizeLookup {
+        @Override
+        public int getSpanSize(int position) {
+            return dataset.get(position).getSpanSize();
+        }
     }
 }
