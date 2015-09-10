@@ -47,5 +47,12 @@ public class TestRecyclerViewActivity extends Activity {
                 GridRecyclerViewActivity.startActivity(TestRecyclerViewActivity.this);
             }
         });
+
+        findViewById(R.id.recycler_view_with_cursor).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CursorAdapterTestActivity.startActivity(TestRecyclerViewActivity.this);
+            }
+        });
     }
 }

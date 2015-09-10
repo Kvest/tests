@@ -19,4 +19,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Grid RecyclerView" />
+    <Button
+        android:id="@+id/recycler_view_with_cursor"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="RecyclerView with cursor adapter" />
 </LinearLayout>

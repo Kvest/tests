@@ -2,35 +2,54 @@ package com.kvest.tests.ui.activity;
 
 import android.app.Activity;
 import android.app.LoaderManager;
-import android.content.*;
+import android.content.AsyncQueryHandler;
+import android.content.ContentProviderOperation;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.CursorLoader;
+import android.content.Intent;
+import android.content.Loader;
+import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
+
 import com.kvest.tests.R;
+import com.kvest.tests.provider.TestProviderContract;
+import com.kvest.tests.ui.adapter.RecyclerViewCursorTestAdapter;
 import com.kvest.tests.ui.adapter.TestAdapter;
 
 import java.util.ArrayList;
 
-import static com.kvest.tests.provider.TestProviderContract.*;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+
+import static com.kvest.tests.provider.TestProviderContract.CONTENT_AUTHORITY;
+import static com.kvest.tests.provider.TestProviderContract.TESTS_URI;
 
 /**
- * User: roman
- * Date: 11/28/14
- * Time: 5:15 PM
+ * Created by roman on 9/10/15.
  */
-public class AsyncQueryHandlerActivity extends Activity implements LoaderManager.LoaderCallbacks<Cursor> {
-    private static final String[] ID_PROJECTION = new String[]{Tables.Tests.Columns._ID};
+public class CursorAdapterTestActivity extends Activity implements LoaderManager.LoaderCallbacks<Cursor> {
+    private static final String[] ID_PROJECTION = new String[]{TestProviderContract.Tables.Tests.Columns._ID};
     private static final int LOAD_TEST_DATA = 0;
     private static final int SINGLE_INSERT_TOKEN = 0;
     private static final int DELETE_FIRST_TOKEN = 1;
     private static final int DELETE_FIRST_THREE_TOKEN = 2;
     private static final int UPDATE_TYPE_TOKEN = 3;
     private static final int UPDATE_TYPE_BATCH_TOKEN = 4;
+
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, CursorAdapterTestActivity.class);
+        context.startActivity(intent);
+    }
+
 
     private TestAdapter testAdapter;
     private EditText typeEdit;
@@ -40,27 +59,32 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
 
     private TestAsyncQueryHandler testAsyncQueryHandler;
 
-    public static void startActivity(Context context) {
-        Intent intent = new Intent(context, AsyncQueryHandlerActivity.class);
-        context.startActivity(intent);
-    }
+    private RecyclerViewCursorTestAdapter adapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.async_query_handler_activity);
+        setContentView(R.layout.cursor_adapter_test_activity);
+
+        testAsyncQueryHandler = new TestAsyncQueryHandler(getContentResolver());
 
         init();
 
         getLoaderManager().initLoader(LOAD_TEST_DATA, null, this);
-
-        testAsyncQueryHandler = new TestAsyncQueryHandler(getContentResolver());
     }
 
     private void init() {
-        ListView listView = (ListView)findViewById(R.id.list_view);
-        testAdapter = new TestAdapter(this);
-        listView.setAdapter(testAdapter);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+        recyclerView.setItemAnimator(new SlideInUpAnimator());
+
+        adapter = new RecyclerViewCursorTestAdapter(this);
+
+        //set an adapter
+        recyclerView.setAdapter(adapter);
 
         typeEdit = (EditText)findViewById(R.id.type_edit);
         nameEdit = (EditText)findViewById(R.id.name_edit);
@@ -102,6 +126,12 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
                 changeTypeBatch();
             }
         });
+        findViewById(R.id.set_cursor_null).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getLoaderManager().destroyLoader(LOAD_TEST_DATA);
+            }
+        });
     }
 
     private void deleteFirstThree () {
@@ -119,7 +149,7 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
         }
 
         testAsyncQueryHandler.startQuery(UPDATE_TYPE_BATCH_TOKEN, newTypeEdit.getText().toString(), TESTS_URI, ID_PROJECTION,
-                                         Tables.Tests.Columns.TYPE + "=?", new String[]{oldTypeEdit.getText().toString()}, null);
+                TestProviderContract.Tables.Tests.Columns.TYPE + "=?", new String[]{oldTypeEdit.getText().toString()}, null);
     }
 
     private void changeType() {
@@ -128,10 +158,10 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
         }
 
         ContentValues cv = new ContentValues(1);
-        cv.put(Tables.Tests.Columns.TYPE, Integer.parseInt(newTypeEdit.getText().toString()));
+        cv.put(TestProviderContract.Tables.Tests.Columns.TYPE, Integer.parseInt(newTypeEdit.getText().toString()));
 
         testAsyncQueryHandler.startUpdate(UPDATE_TYPE_TOKEN, null, TESTS_URI, cv,
-                                          Tables.Tests.Columns.TYPE + "=?", new String[]{oldTypeEdit.getText().toString()});
+                TestProviderContract.Tables.Tests.Columns.TYPE + "=?", new String[]{oldTypeEdit.getText().toString()});
     }
 
     private void addNewMultipleItems() {
@@ -143,9 +173,9 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
         ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>(count);
         for (int i = 0; i < count; ++i) {
             ContentValues cv = new ContentValues(3);
-            cv.put(Tables.Tests.Columns.TYPE, Integer.parseInt(typeEdit.getText().toString()));
-            cv.put(Tables.Tests.Columns.NAME, nameEdit.getText().toString() + "[" + i + "]");
-            cv.put(Tables.Tests.Columns.DESCRIPTION, "This is description " + i);
+            cv.put(TestProviderContract.Tables.Tests.Columns.TYPE, Integer.parseInt(typeEdit.getText().toString()));
+            cv.put(TestProviderContract.Tables.Tests.Columns.NAME, nameEdit.getText().toString() + "[" + i + "]");
+            cv.put(TestProviderContract.Tables.Tests.Columns.DESCRIPTION, "This is description " + i);
 
             ContentProviderOperation insertOperation = ContentProviderOperation.newInsert(TESTS_URI).withValues(cv).build();
             operations.add(insertOperation);
@@ -166,9 +196,9 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
         }
 
         ContentValues cv = new ContentValues(3);
-        cv.put(Tables.Tests.Columns.TYPE, Integer.parseInt(typeEdit.getText().toString()));
-        cv.put(Tables.Tests.Columns.NAME, nameEdit.getText().toString());
-        cv.put(Tables.Tests.Columns.DESCRIPTION, "This is description");
+        cv.put(TestProviderContract.Tables.Tests.Columns.TYPE, Integer.parseInt(typeEdit.getText().toString()));
+        cv.put(TestProviderContract.Tables.Tests.Columns.NAME, nameEdit.getText().toString());
+        cv.put(TestProviderContract.Tables.Tests.Columns.DESCRIPTION, "This is description");
 
         testAsyncQueryHandler.startInsert(SINGLE_INSERT_TOKEN, null, TESTS_URI, cv);
     }
@@ -177,7 +207,7 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         switch (id) {
             case LOAD_TEST_DATA :
-                return new CursorLoader(this, TESTS_URI, TestAdapter.PROJECTION, null, null, null);
+                return new CursorLoader(this, TESTS_URI, RecyclerViewCursorTestAdapter.PROJECTION, null, null, null);
         }
 
         return null;
@@ -188,16 +218,17 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
         switch (loader.getId()) {
             case LOAD_TEST_DATA :
                 Log.d("KVEST_TAG", "LOAD_TEST_DATA loaded");
-                testAdapter.swapCursor(data);
+                adapter.swapCursor(data);
                 break;
         }
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
+        Log.d("KVEST_TAG", "LOAD_TEST_DATA reset");
         switch (loader.getId()) {
             case LOAD_TEST_DATA :
-                testAdapter.swapCursor(null);
+                adapter.swapCursor(null);
                 break;
         }
     }
@@ -209,13 +240,12 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
 
         @Override
         protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-            Log.d("KVEST_TAG", "onQueryComplete");
             ArrayList<ContentProviderOperation> operations;
             switch (token) {
                 case DELETE_FIRST_TOKEN :
                     cursor.moveToFirst();
                     if (!cursor.isAfterLast()) {
-                        long id = cursor.getLong(cursor.getColumnIndex(Tables.Tests.Columns._ID));
+                        long id = cursor.getLong(cursor.getColumnIndex(TestProviderContract.Tables.Tests.Columns._ID));
                         Uri uri = Uri.withAppendedPath(TESTS_URI, Long.toString(id));
 
                         this.startDelete(token, null, uri, null, null);
@@ -230,7 +260,7 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
                             break;
                         }
 
-                        long id = cursor.getLong(cursor.getColumnIndex(Tables.Tests.Columns._ID));
+                        long id = cursor.getLong(cursor.getColumnIndex(TestProviderContract.Tables.Tests.Columns._ID));
                         Uri uri = Uri.withAppendedPath(TESTS_URI, Long.toString(id));
 
                         ContentProviderOperation deleteOperation = ContentProviderOperation.newDelete(uri).build();
@@ -254,10 +284,10 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
                     int newType = Integer.parseInt((String)cookie);
                     operations = new ArrayList<ContentProviderOperation>(cursor.getCount());
                     while (!cursor.isAfterLast()) {
-                        long id = cursor.getLong(cursor.getColumnIndex(Tables.Tests.Columns._ID));
+                        long id = cursor.getLong(cursor.getColumnIndex(TestProviderContract.Tables.Tests.Columns._ID));
                         Uri uri = Uri.withAppendedPath(TESTS_URI, Long.toString(id));
 
-                        ContentProviderOperation updateOperation = ContentProviderOperation.newUpdate(uri).withValue(Tables.Tests.Columns.TYPE, newType).build();
+                        ContentProviderOperation updateOperation = ContentProviderOperation.newUpdate(uri).withValue(TestProviderContract.Tables.Tests.Columns.TYPE, newType).build();
                         operations.add(updateOperation);
 
                         cursor.moveToNext();
@@ -275,21 +305,6 @@ public class AsyncQueryHandlerActivity extends Activity implements LoaderManager
             }
 
             cursor.close();
-        }
-
-        @Override
-        protected void onInsertComplete(int token, Object cookie, Uri uri) {
-            Log.d("KVEST_TAG", "onInsertComplete " + uri);
-        }
-
-        @Override
-        protected void onUpdateComplete(int token, Object cookie, int result) {
-            Log.d("KVEST_TAG", "onUpdateComplete");
-        }
-
-        @Override
-        protected void onDeleteComplete(int token, Object cookie, int result) {
-            Log.d("KVEST_TAG", "onDeleteComplete");
         }
     }
 }

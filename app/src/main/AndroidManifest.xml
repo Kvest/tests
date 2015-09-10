@@ -21,8 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.AsyncQueryHandlerActivity"
-            android:screenOrientation="portrait" />
+            android:name=".ui.activity.AsyncQueryHandlerActivity"/>
         <activity
             android:name=".ui.activity.SimpleRecyclerViewActivity" />
         <activity
@@ -44,6 +43,7 @@
         <activity android:name=".ui.activity.CollapsingToolLayoutTestActivityWithFragment"/>
         <activity android:name=".ui.activity.GridRecyclerViewActivity" />
         <activity android:name=".ui.activity.ActionsRecyclerViewActivity" />
+        <activity android:name=".ui.activity.CursorAdapterTestActivity" />
         <provider
             android:name=".provider.TestProvider"
             android:authorities="com.kvest.tests"

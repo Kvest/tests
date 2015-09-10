@@ -4,6 +4,7 @@ package com.kvest.tests.ui.adapter;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class TestAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
+        Log.d("KVEST_TAG", "newView");
         //create view
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.test_list_item, viewGroup, false);
