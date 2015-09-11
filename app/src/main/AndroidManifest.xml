@@ -44,6 +44,7 @@
         <activity android:name=".ui.activity.GridRecyclerViewActivity" />
         <activity android:name=".ui.activity.ActionsRecyclerViewActivity" />
         <activity android:name=".ui.activity.CursorAdapterTestActivity" />
+        <activity android:name=".ui.activity.ImageDetailsActivity" />
         <provider
             android:name=".provider.TestProvider"
             android:authorities="com.kvest.tests"

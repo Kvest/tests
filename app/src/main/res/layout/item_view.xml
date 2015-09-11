@@ -6,6 +6,7 @@
     android:padding="4dip">
     <ImageView
         android:id="@+id/image"
+        android:transitionName="image"
         android:layout_width="100dip"
         android:layout_height="100dip" />
     <TextView

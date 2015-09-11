@@ -4,27 +4,30 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import com.kvest.tests.R;
 import com.kvest.tests.model.BaseRecyclerViewModel;
 import com.kvest.tests.model.ItemModel;
 import com.kvest.tests.model.TitleModel;
+import com.kvest.tests.ui.adapter.OnImageSelectedListener;
 import com.kvest.tests.ui.adapter.UniversalRecyclerViewAdapter;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
-
 /**
  * Created by roman on 9/1/15.
  */
-public class ActionsRecyclerViewActivity extends Activity {
+public class ActionsRecyclerViewActivity extends AppCompatActivity implements OnImageSelectedListener {
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, ActionsRecyclerViewActivity.class);
         context.startActivity(intent);
@@ -94,6 +97,8 @@ public class ActionsRecyclerViewActivity extends Activity {
         adapter = new UniversalRecyclerViewAdapter(generateDataset());
         recyclerView.setAdapter(adapter);
 
+        adapter.setOnImageSelectedListener(this);
+
         RadioGroup callbackType = (RadioGroup) findViewById(R.id.callback_type);
         callbackType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -155,6 +160,11 @@ public class ActionsRecyclerViewActivity extends Activity {
         }
 
         return result;
+    }
+
+    @Override
+    public void onImageSelected(ImageView imageView, String imageUrl) {
+        ImageDetailsActivity.startActivity(this, imageView, imageUrl);
     }
 
     public class CustomItemTouchHelperCallback extends ItemTouchHelper.Callback {
