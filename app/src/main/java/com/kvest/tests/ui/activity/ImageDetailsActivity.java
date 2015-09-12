@@ -1,15 +1,21 @@
 package com.kvest.tests.ui.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Explode;
+import android.transition.ChangeBounds;
+import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kvest.tests.R;
 import com.kvest.tests.model.ItemModel;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by roman on 9/11/15.
@@ -17,12 +23,17 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 public class ImageDetailsActivity extends AppCompatActivity {
     private static final String EXTRA_IMAGE_URL = "com.kvest.tests.extras.IMAGE_URL";
 
-    public static void startActivity(AppCompatActivity context, ImageView imageView, String imageUrl) {
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(context, imageView, "image");
+    public static void startActivity(AppCompatActivity context, View imageView, String imageUrl) {
+
 
         Intent intent = new Intent(context, ImageDetailsActivity.class);
         intent.putExtra(EXTRA_IMAGE_URL, imageUrl);
-        context.startActivity(intent, options.toBundle());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(context, imageView, "image");
+            context.startActivity(intent, options.toBundle());
+        } else {
+            context.startActivity(intent);
+        }
     }
 
     @Override
@@ -41,9 +52,10 @@ public class ImageDetailsActivity extends AppCompatActivity {
 
     private void init(String imageUrl) {
         ((TextView) findViewById(R.id.url)).setText(imageUrl);
+
         if (imageUrl != null) {
             ImageView image = (ImageView) findViewById(R.id.image);
-            ImageLoader.getInstance().displayImage(imageUrl, image);
+            Picasso.with(this).load(imageUrl).into(image);
         }
     }
 

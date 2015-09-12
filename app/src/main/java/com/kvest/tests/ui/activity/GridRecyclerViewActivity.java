@@ -4,14 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.widget.ImageView;
 
 import com.kvest.tests.R;
 import com.kvest.tests.model.BaseRecyclerViewModel;
 import com.kvest.tests.model.ImageItemModel;
 import com.kvest.tests.model.TitleModel;
+import com.kvest.tests.ui.adapter.OnImageSelectedListener;
 import com.kvest.tests.ui.adapter.UniversalRecyclerViewAdapter;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -23,7 +26,7 @@ import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 /**
  * Created by roman on 9/1/15.
  */
-public class GridRecyclerViewActivity extends Activity {
+public class GridRecyclerViewActivity extends AppCompatActivity implements OnImageSelectedListener {
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, GridRecyclerViewActivity.class);
         context.startActivity(intent);
@@ -84,6 +87,7 @@ public class GridRecyclerViewActivity extends Activity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         adapter = new UniversalRecyclerViewAdapter(generateDataset());
+        adapter.setOnImageSelectedListener(this);
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         layoutManager.setSpanSizeLookup(adapter.getSpanSizeLookup());
@@ -131,5 +135,10 @@ public class GridRecyclerViewActivity extends Activity {
         }
 
         return result;
+    }
+
+    @Override
+    public void onImageSelected(ImageView imageView, String imageUrl) {
+        ImageDetailsActivity.startActivity(this, imageView, imageUrl);
     }
 }
