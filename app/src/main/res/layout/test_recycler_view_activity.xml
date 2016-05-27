@@ -24,4 +24,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="RecyclerView with cursor adapter" />
+    <Button
+        android:id="@+id/recycler_view_animations"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="RecyclerView animations" />
 </LinearLayout>
