@@ -21,8 +21,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
-
 /**
  * Created by roman on 9/1/15.
  */
@@ -92,8 +90,6 @@ public class GridRecyclerViewActivity extends AppCompatActivity implements OnIma
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         layoutManager.setSpanSizeLookup(adapter.getSpanSizeLookup());
         recyclerView.setLayoutManager(layoutManager);
-
-        recyclerView.setItemAnimator(new SlideInUpAnimator());
 
         //set an adapter
         recyclerView.setAdapter(adapter);

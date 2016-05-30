@@ -28,8 +28,6 @@ import com.kvest.tests.ui.adapter.TestAdapter;
 
 import java.util.ArrayList;
 
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
-
 import static com.kvest.tests.provider.TestProviderContract.CONTENT_AUTHORITY;
 import static com.kvest.tests.provider.TestProviderContract.TESTS_URI;
 
@@ -78,8 +76,6 @@ public class CursorAdapterTestActivity extends Activity implements LoaderManager
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-        recyclerView.setItemAnimator(new SlideInUpAnimator());
 
         adapter = new RecyclerViewCursorTestAdapter(this);
 
